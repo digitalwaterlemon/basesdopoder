@@ -1,53 +1,116 @@
 /* ==========================================================================
-   Variáveis Globais (Estilo Apple iOS / Vision Pro)
+   Variáveis Globais (FUNDO VERDE OFICIAL REPLANTE v1.7)
    ========================================================================== */
 :root {
-    --bg-color: #000000;
-    --glass-bg: rgba(255, 255, 255, 0.08);
-    --glass-border: rgba(255, 255, 255, 0.15);
-    --text-main: #f5f5f7;
-    --text-muted: #86868b;
-    --ios-blue: #0A84FF;
-    --radius: 18px;
+    /* Cores de Fundo (A Alma da Replante) */
+    --replante-bg-main: #1e4129; /* O Verde Floresta Original (Escuro) */
+    --replante-bg-dark: #0b1a10; /* Tom quase preto para dar profundidade 3D */
+    
+    /* NOVA COR DE DESTAQUE CORPORATIVA (Verde Replante Sincronizado #1E8449) 
+       Saturado o HEX original (#1e4129) para ter leitura em fundo escuro 
+       sem perder a identidade de engenharia. */
+    --replante-accent: #1E8449; 
+    --replante-accent-glow: rgba(30, 132, 73, 0.5); /* RGB correspondente ao accent */
+    
+    /* Cores do Vidro e Textos */
+    --glass-bg: rgba(0, 0, 0, 0.45); /* Vidro mais escurecido para contraste */
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-main: #ffffff;
+    --text-muted: #a1a1a6;
+    
+    --radius: 24px;
     --transition: all 0.3s ease;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 /* ==========================================================================
-   Fundo e Efeito Frosted Glass Avançado
+   Carrossel de Imagens de Fundo (Background Slider)
+   ========================================================================== */
+/* ==========================================================================
+   Carrossel de Imagens de Fundo e Véu de Escuridão (v1.8)
+   ========================================================================== */
+#bg-slider {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0; /* Base da página */
+    background-color: var(--replante-bg-dark); /* Cor de segurança */
+    /* Gradiente que nasce do Verde Oficial no topo e escurece nas bordas */
+    background-image: radial-gradient(circle at 50% -10%, var(--replante-bg-main) 0%, var(--replante-bg-dark) 80%);
+}
+
+/* --- A NOVA ADIÇÃO MÁGICA: O VÉU DE ESCURIDÃO --- */
+/* Isso cria uma camada preta translúcida entre as fotos e o questionário */
+#bg-slider::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 60% de preto puro (rgba(0,0,0,0.60)) */
+    /* Isso escurece o fundo o suficiente para o texto branco ficar legível */
+    background-color: rgba(0, 0, 0, 0.60);
+    z-index: 1; /* Fica acima das imagens mas abaixo do teste */
+}
+
+.bg-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    z-index: 0; /* Abaixo do véu */
+}
+
+/* A imagem ativa fica com 40% de opacidade para mostrar a foto,
+   mas agora o véu de 60% por cima garante a leitura. */
+.bg-slide.active {
+    opacity: 0.40; 
+}
+/* ==========================================================================
+   Estrutura Principal
    ========================================================================== */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--bg-color);
-    /* Orbes sutis de luz para o vidro desfocar e saturar */
-    background-image: 
-        radial-gradient(circle at 15% 30%, rgba(10, 132, 255, 0.12), transparent 40%),
-        radial-gradient(circle at 85% 70%, rgba(94, 92, 230, 0.12), transparent 40%);
-    background-attachment: fixed;
     color: var(--text-main);
     line-height: 1.6;
     min-height: 100vh;
     padding: 20px;
     display: flex;
     justify-content: center;
+    /* Fundo controlado pelo #bg-slider */
 }
 
-.container { max-width: 900px; width: 100%; margin-top: 40px; margin-bottom: 60px; }
+.container { 
+    position: relative;
+    z-index: 10; /* Garante que o teste flutue acima do carrossel */
+    max-width: 900px; 
+    width: 100%; 
+    margin-top: 40px; 
+    margin-bottom: 60px; 
+}
 
+/* ==========================================================================
+   Efeito Frosted Glass (O "Vidro" Escuro Corporativo)
+   ========================================================================== */
 .glass-panel {
-    background: rgba(30, 30, 35, 0.45);
-    /* Saturate(150%) faz as cores pularem por trás do vidro fosco */
-    backdrop-filter: blur(40px) saturate(150%);
-    -webkit-backdrop-filter: blur(40px) saturate(150%);
+    background: var(--glass-bg);
+    backdrop-filter: blur(40px) saturate(120%);
+    -webkit-backdrop-filter: blur(40px) saturate(120%);
     
-    /* Borda 3D com luz vindo de cima/esquerda */
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Brilho de borda iOS */
     
-    border-radius: 24px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    border-radius: var(--radius);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Sombra mais forte */
     padding: 30px;
     margin-bottom: 30px;
 }
@@ -55,14 +118,15 @@ body {
 .text-gradient { color: #ffffff; font-weight: 700; letter-spacing: -0.5px; }
 
 h1, h2, h3 { margin-bottom: 15px; font-weight: 600; }
-h1 { font-size: 2.5rem; }
+h1 { font-size: 2.5rem; text-align: center; margin-bottom: 10px; }
+header p { text-align: center; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 40px; }
 
 /* ==========================================================================
    Inputs de Texto
    ========================================================================== */
 .input-group { margin: 30px 0; text-align: center; }
 .input-glow {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.5);
     border: 1px solid var(--glass-border);
     color: #fff;
     padding: 14px 20px;
@@ -73,7 +137,11 @@ h1 { font-size: 2.5rem; }
     transition: var(--transition);
     text-align: center;
 }
-.input-glow:focus { outline: none; border-color: var(--ios-blue); box-shadow: 0 0 10px rgba(10, 132, 255, 0.3); }
+.input-glow:focus { 
+    outline: none; 
+    border-color: var(--replante-accent); 
+    box-shadow: 0 0 10px var(--replante-accent-glow); 
+}
 
 /* ==========================================================================
    Questionário e Sliders (Clean Design)
@@ -87,124 +155,118 @@ h1 { font-size: 2.5rem; }
 
 .slider-labels { display: flex; justify-content: space-between; margin-bottom: 12px; padding: 0 2px; }
 
+/* Pílulas de Texto "Mais a ver" (Verde Sincronizado) */
 .label-destaque {
-    font-size: 0.75rem; font-weight: 600; color: var(--text-muted);
-    background: rgba(255, 255, 255, 0.05);
-    border: 0.5px solid rgba(255, 255, 255, 0.1);
-    padding: 6px 14px; border-radius: 20px;
-    text-transform: uppercase; letter-spacing: 0.5px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ffffff; /* Texto branco para leitura */
+    background: rgba(30, 132, 73, 0.3); /* Base Verde Corporativo */
+    border: 1px solid var(--replante-accent);
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-/* O Trilho */
+/* O Trilho do Slider */
 input[type="range"].slider-single::-webkit-slider-runnable-track {
-    width: 100%; height: 4px; cursor: pointer; background: rgba(255, 255, 255, 0.15); border-radius: 10px;
+    width: 100%; height: 4px; cursor: pointer; background: rgba(255, 255, 255, 0.2); border-radius: 10px;
 }
 
-/* A Bolinha do Slider */
+/* A Bolinha do Slider (Branca e Firme) */
 input[type="range"].slider-single::-webkit-slider-thumb {
     height: 24px; width: 24px; border-radius: 50%;
     background: #ffffff;
     cursor: pointer; -webkit-appearance: none;
     margin-top: -10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    transition: transform 0.1s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    transition: var(--transition);
 }
-input[type="range"].slider-single:active::-webkit-slider-thumb { transform: scale(1.1); }
+input[type="range"].slider-single:active::-webkit-slider-thumb { 
+    transform: scale(1.1); 
+    background: var(--replante-accent); /* Bolinha fica verde no clique */
+}
 input[type="range"].slider-single { flex: 0 0 160px; -webkit-appearance: none; background: transparent; }
 input[type="range"].slider-single:focus { outline: none; }
 
 /* ==========================================================================
-   Botões (Estilo iOS)
+   Botões (Ação Principal Sincronizada)
    ========================================================================== */
 .button-container { text-align: center; margin-top: 50px; }
+
 .btn-glow {
-    background: var(--ios-blue);
-    color: #fff;
+    background: var(--replante-accent); /* Verde Corporativo Firme */
+    color: #ffffff !important; /* Texto branco para contraste total */
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 700;
     padding: 14px 32px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: none;
     border-radius: 14px;
     cursor: pointer;
     transition: var(--transition);
     letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }
-.btn-glow:hover { background: #0070e0; transform: translateY(-2px); }
+.btn-glow:hover { 
+    background: #176639; /* Verde ligeiramente mais escuro no hover */
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 15px var(--replante-accent-glow); 
+}
 
 /* ==========================================================================
-   Telas (Controle de Visibilidade)
+   Botão Assinatura (Apenas Logo Limpa)
+   ========================================================================= */
+.btn-logo-only {
+    display: inline-block;
+    transition: var(--transition);
+    opacity: 0.9;
+}
+
+.btn-logo-only:hover {
+    opacity: 1; 
+    transform: scale(1.05); /* Leve zoom */
+}
+
+.btn-logo-only img {
+    max-height: 50px; /* Logo imponente */
+    display: block;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Telas e Específicos
    ========================================================================== */
 #tela-preparacao, #tela-questionario, #tela-analise-bases, #tela-mapa-mina { display: none; animation: fadeIn 0.5s ease-in-out; }
 #tela-preparacao.active, #tela-questionario.active, #tela-analise-bases.active, #tela-mapa-mina.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+.base-analysis-box h4 { margin-bottom: 10px; color: var(--replante-accent); }
+.analise-text { margin-top: 10px; font-weight: 400; line-height: 1.5; }
+#mapaMinaContainer h2 { text-align: center; }
+#mapaMinaContainer ul { margin-bottom: 20px; }
+#mapaMinaContainer ul li { margin-bottom: 10px; font-size: 0.95rem; }
+
 /* ==========================================================================
-   Responsividade para Celulares (Mobile UX)
+   Responsividade Mobile UX
    ========================================================================== */
 @media (max-width: 768px) {
-    /* Reduz as margens do vidro para ganhar espaço na tela do celular */
-    .glass-panel {
-        padding: 20px 15px;
-    }
-
-    /* Transforma o layout em uma Grade (Grid) 2x2 */
-    .slider-container.single-slider-setup {
-        display: grid;
-        grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
-        grid-template-rows: auto auto;  /* Duas linhas */
-        gap: 15px 10px;
-    }
-
-    /* Joga a Frase A para cima e para a esquerda */
-    .phrase-text.a-side {
-        grid-column: 1;
-        grid-row: 1;
-        text-align: center;
-        font-size: 0.85rem;
-    }
-
-    /* Joga a Frase B para cima e para a direita */
-    .phrase-text.b-side {
-        grid-column: 2;
-        grid-row: 1;
-        text-align: center;
-        font-size: 0.85rem;
-    }
-
-    /* Faz o Slider ocupar a linha de baixo inteira */
-    input[type="range"].slider-single {
-        grid-column: 1 / span 2;
-        grid-row: 2;
-        width: 100%;
-        flex: none;
-        margin-top: 5px;
-    }
-
-    /* Ajusta as pílulas "Mais a ver comigo" para não quebrarem feio */
-    .slider-labels {
-        gap: 10px;
-        margin-bottom: 15px;
-    }
-
-    .label-destaque {
-        font-size: 0.65rem;
-        padding: 8px 4px;
-        flex: 1;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    h1 {
-        font-size: 1.8rem;
-    }
+    .glass-panel { padding: 20px 15px; }
+    .slider-container.single-slider-setup { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 15px 10px; }
+    .phrase-text { font-size: 0.85rem; text-align: center; }
+    .phrase-text.a-side { grid-column: 1; grid-row: 1; text-align: center; }
+    .phrase-text.b-side { grid-column: 2; grid-row: 1; text-align: center; }
+    input[type="range"].slider-single { grid-column: 1 / span 2; grid-row: 2; width: 100%; flex: none; margin-top: 5px; }
+    .slider-labels { gap: 10px; margin-bottom: 15px; }
+    .label-destaque { font-size: 0.65rem; padding: 8px 4px; flex: 1; text-align: center; display: flex; align-items: center; justify-content: center; }
+    h1 { font-size: 1.8rem; }
 }
+
 /* ==========================================================================
-   Estilos Específicos para Impressão (PDF ou Papel Limpo)
+   Estilos Específicos para Impressão
    ========================================================================== */
 @media print {
     body { background: #ffffff !important; color: #000000 !important; background-image: none !important; }
+    #bg-slider { display: none !important; }
     .container { width: 100% !important; max-width: none !important; margin: 0 !important; padding: 0 !important; }
     .glass-panel {
         background: transparent !important; border: 1px solid #cccccc !important;
@@ -217,8 +279,6 @@ input[type="range"].slider-single:focus { outline: none; }
         border-color: #000000 !important; box-shadow: none !important;
     }
     .teoria-text, .analise-text, p, span, ul, li { color: #222222 !important; }
-    
-    /* Oculta Telas e Botões que não devem ir pro PDF */
-    #tela-preparacao, #tela-questionario, .button-container, button { display: none !important; }
+    #tela-preparacao, #tela-questionario, .button-container, button, .btn-logo-only { display: none !important; }
     * { overflow: visible !important; }
 }
