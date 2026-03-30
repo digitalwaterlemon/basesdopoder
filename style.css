@@ -1,0 +1,339 @@
+/* ==========================================================================
+   Variáveis Globais (Estilo Apple iOS / Vision Pro)
+   ========================================================================== */
+:root {
+    --bg-color: #000000; /* Fundo preto profundo */
+    --glass-bg: rgba(255, 255, 255, 0.08); /* Vidro translúcido limpo */
+    --glass-border: rgba(255, 255, 255, 0.15); /* Borda prata sutil */
+    --text-main: #f5f5f7; /* Branco suave da Apple */
+    --text-muted: #86868b; /* Cinza Apple */
+    --ios-blue: #0A84FF; /* Azul clássico do iOS */
+    --radius: 18px; /* Cantos arredondados suaves */
+    --transition: all 0.3s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    /* Um gradiente de fundo extremamente suave, quase imperceptível, como no macOS */
+    background-image: radial-gradient(circle at 50% 0%, #1a1a24 0%, #000000 80%);
+    background-attachment: fixed;
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container { max-width: 900px; width: 100%; margin-top: 40px; margin-bottom: 60px; }
+
+/* ==========================================================================
+   Efeito Frosted Glass (O "Vidro" Limpo)
+   ========================================================================== */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 0.5px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra preta suave, sem brilho colorido */
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+/* Substituindo o texto neon por um branco elegante */
+.text-gradient {
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+h1, h2, h3 { margin-bottom: 15px; font-weight: 600; }
+h1 { font-size: 2.5rem; text-align: center; margin-bottom: 10px; }
+header p { text-align: center; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 40px; }
+
+/* ==========================================================================
+   Questionário e Sliders (Clean Design)
+   ========================================================================== */
+.slider-container.single-slider-setup {
+    display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 5px;
+}
+.phrase-text { flex: 1; font-size: 0.95rem; color: var(--text-main); }
+.phrase-text.a-side { text-align: right; }
+.phrase-text.b-side { text-align: left; }
+
+.slider-labels { display: flex; justify-content: space-between; margin-bottom: 12px; padding: 0 2px; }
+
+/* Pílulas de Texto (Estilo botão do iOS) */
+.label-destaque {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* O "Trilho" do Slider */
+input[type="range"].slider-single::-webkit-slider-runnable-track {
+    width: 100%; height: 4px; cursor: pointer; background: rgba(255, 255, 255, 0.15); border-radius: 10px;
+}
+
+/* A Bolinha do Slider (Branca e minimalista) */
+input[type="range"].slider-single::-webkit-slider-thumb {
+    height: 24px; width: 24px; border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer; -webkit-appearance: none;
+    margin-top: -10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Sombra clássica de botão físico */
+    transition: transform 0.1s;
+}
+input[type="range"].slider-single:active::-webkit-slider-thumb { transform: scale(1.1); }
+input[type="range"].slider-single { flex: 0 0 160px; -webkit-appearance: none; background: transparent; }
+input[type="range"].slider-single:focus { outline: none; }
+
+/* ==========================================================================
+   Botões (Estilo iOS Padrão)
+   ========================================================================== */
+.button-container { text-align: center; margin-top: 50px; }
+
+.btn-glow {
+    background: var(--ios-blue);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: var(--transition);
+    letter-spacing: 0.5px;
+}
+.btn-glow:hover { background: #0070e0; transform: translateY(-2px); }
+
+
+/* ==========================================================================
+   Telas (Controle de Visibilidade)
+   ========================================================================== */
+#tela-preparacao, #tela-questionario, #tela-analise-bases, #tela-mapa-mina {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+#tela-preparacao.active, 
+#tela-questionario.active, 
+#tela-analise-bases.active, 
+#tela-mapa-mina.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Inputs de Texto (Nome do Usuário)
+   ========================================================================== */
+.input-group {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.input-glow {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    width: 100%;
+    max-width: 300px;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.input-glow:focus {
+    outline: none;
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+/* ==========================================================================
+   Gráficos e Resultados
+   ========================================================================== */
+.chart-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+    margin: 30px 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius);
+    padding: 20px;
+}
+
+.base-analysis-box {
+    margin-bottom: 25px;
+    border-left: 4px solid var(--neon-purple);
+}
+
+.base-analysis-box h4 {
+    color: var(--text-main);
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.teoria-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.analise-text {
+    font-size: 1rem;
+    color: var(--neon-cyan);
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Rodapé
+   ========================================================================== */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+footer a {
+    color: var(--neon-cyan);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+footer a:hover {
+    color: #fff;
+    text-shadow: 0 0 5px var(--neon-cyan);
+}
+
+/* Responsividade Básica */
+@media (max-width: 768px) {
+    .slider-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .phrase-text.a, .phrase-text.b {
+        text-align: center;
+    }
+    input[type="range"] {
+        width: 80%;
+        max-width: none;
+        margin: 15px 0;
+    }
+}
+/* ==========================================================================
+   Estilos para o Novo Setup de Single Slider (Uma barra)
+   ========================================================================= */
+.single-slider-setup {
+    margin-top: 10px; /* Dá espaço para as etiquetas */
+}
+
+.phrase-text.a-side { text-align: right; }
+.phrase-text.b-side { text-align: left; }
+
+/* ==========================================================================
+   Etiquetas Acima do Slider
+   ========================================================================== */
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 0 2px;
+}
+
+.label-destaque {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(0, 243, 255, 0.15);
+    border: 1px solid var(--neon-cyan);
+    padding: 6px 15px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+/* Garante que o slider tenha largura suficiente entre os textos */
+input[type="range"].slider-single {
+    max-width: none; /* Remove limitação anterior */
+}
+/* ==========================================================================
+   Estilos Específicos para Impressão (PDF ou Papel)
+   ========================================================================== */
+@media print {
+    /* Reseta o fundo escuro para branco e texto para preto */
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        background-image: none !important;
+    }
+
+    /* Expande o container para usar todo o papel A4 */
+    .container {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Remove o efeito de vidro e sombras para não bugar a impressora */
+    .glass-panel {
+        background: transparent !important;
+        border: 1px solid #cccccc !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        color: #000000 !important;
+        margin-bottom: 20px !important;
+        /* A regra de ouro: impede que a impressora corte o perfil no meio da página */
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    /* Tira os efeitos de gradiente e neon dos textos */
+    .text-gradient, h1, h2, h3, h4, .label-destaque {
+        background: none !important;
+        -webkit-text-fill-color: #000000 !important;
+        color: #000000 !important;
+        border-color: #000000 !important;
+        box-shadow: none !important;
+    }
+
+    /* Ajusta cores fracas para preto no papel */
+    .teoria-text, .analise-text, p, span, ul, li {
+        color: #222222 !important;
+    }
+
+    /* Oculta as seções que não devem ser impressas (e os botões) */
+    #tela-preparacao, 
+    #tela-questionario, 
+    .button-container, 
+    button {
+        display: none !important;
+    }
+
+    /* Garante que nenhuma div fique com o texto cortado por overflow */
+    * {
+        overflow: visible !important;
+    }
+}

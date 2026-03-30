@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raio-X da Liderança: Poder e Influência</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<div class="container">
+
+    <section id="tela-preparacao" class="active glass-panel">
+        <h1 class="text-gradient">Raio-X de Poder e Influência</h1>
+        <p style="text-align: center; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 40px;">Descubra suas bases de liderança e seu arquétipo dominante.</p>
+        
+        <div class="disclaimer-box glass-panel" style="background: rgba(20, 20, 25, 0.6); padding: 25px;">
+            <p style="font-size: 1.1rem; color: #fff; margin-bottom: 15px;"><strong>⚠️ Vista o seu chapéu de Líder!</strong></p>
+            
+            <p style="margin-bottom: 15px;">Reserve de 20 a 30 minutos de tranquilidade. Responda pensando em como você age na <strong>prática</strong> ao conduzir equipes, cobrar resultados e tomar decisões nos seus negócios hoje, e não em como você "gostaria" de ser no mundo ideal.</p>
+            
+            <hr style="border: 0; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 20px 0;">
+            
+            <p style="font-size: 0.85rem; color: #ff9f0a; margin-bottom: 10px; text-transform: uppercase;"><strong>🛑 Isenção de Responsabilidade (Legal)</strong></p>
+            <p style="font-size: 0.85rem; font-style: italic; opacity: 0.85; margin-bottom: 15px; line-height: 1.5;">Esta ferramenta tem fins exclusivamente educacionais e de auto-reflexão empreendedora, baseada nas teorias de gestão de French & Raven. <strong>NÃO constitui um diagnóstico psicológico, psiquiátrico ou laudo comportamental clínico.</strong> Os resultados não possuem validade científica para justificar contratações, demissões ou diagnósticos médicos. O uso e a interpretação das informações são de inteira responsabilidade do usuário.</p>
+            
+            <p style="font-size: 0.8rem; opacity: 0.6; margin-bottom: 0;">🔒 Privacidade: Sem banco de dados. O processamento ocorre localmente no seu dispositivo.</p>
+        </div>
+
+        <div class="input-group">
+            <label for="nomeParticipante" style="display: block; margin-bottom: 10px; color: var(--text-main); font-weight: 600;">Como você quer ser chamado no relatório?</label>
+            <input type="text" id="nomeParticipante" class="input-glow" placeholder="Seu nome ou apelido">
+        </div>
+
+        <div class="button-container">
+            <button id="btnIniciar" class="btn-glow">Iniciar Mapeamento</button>
+        </div>
+    </section>
+
+    <section id="tela-questionario">
+        <header>
+            <h2 class="text-gradient" style="text-align: center;">O Questionário</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: var(--text-muted);">Arraste a bolinha para o lado da atitude que mais representa a sua realidade. Como há apenas 4 posições (escala de 3 pontos), <strong>não existe resposta neutra</strong>: você deve definir qual lado pesa mais no seu dia a dia.</p>
+        </header>
+
+        <div id="perguntasContainer">
+            <div class="glass-panel question-pair">
+                <h3>Situação 01</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Garanto os resultados deixando claras as métricas de baixa performance e as consequências formais para quem não as atinge.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par1" data-letra-a="A" data-letra-b="B">
+                    <span class="phrase-text b-side">Alcanço meus objetivos profissionais acionando minha rede de contatos e as parcerias estratégicas que construí.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 02</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">A equipe segue minhas diretrizes porque confia plenamente na minha expertise técnica e vivência prática na área.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par2" data-letra-a="C" data-letra-b="D">
+                    <span class="phrase-text b-side">Consigo direcionar o time porque centralizo os dados estratégicos e os relatórios essenciais para a operação.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 03</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">As diretrizes que estabeleço são seguidas prioritariamente em respeito à hierarquia e às responsabilidades do meu cargo.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par3" data-letra-a="E" data-letra-b="F">
+                    <span class="phrase-text b-side">Meu time engaja nos projetos porque compartilhamos os mesmos valores e eles se inspiram na minha conduta.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 04</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Promovo o engajamento vinculando entregas excepcionais a reconhecimentos visíveis e incentivos claros.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par4" data-letra-a="G" data-letra-b="A">
+                    <span class="phrase-text b-side">Mantenho o padrão da equipe sendo rigoroso na aplicação de medidas disciplinares quando as regras são quebradas.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 05</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Facilito a aprovação de projetos usando minha influência e trânsito com pessoas-chave na organização.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par5" data-letra-a="B" data-letra-b="C">
+                    <span class="phrase-text b-side">Meus argumentos prevalecem nas decisões porque demonstro profundo domínio técnico sobre o problema.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 06</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Minha influência vem do fato de eu ser a principal ponte de informações e atualizações vitais para a equipe.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par6" data-letra-a="D" data-letra-b="E">
+                    <span class="phrase-text b-side">Exerço liderança garantindo que os processos sigam estritamente o organograma e as atribuições formais da empresa.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 07</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">As pessoas colaboram comigo porque buscam um ambiente de pertencimento, empatia e identificação pessoal.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par7" data-letra-a="F" data-letra-b="G">
+                    <span class="phrase-text b-side">Mobilizo a equipe estruturando planos de recompensa e destacando os benefícios práticos e financeiros de cooperar.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 08</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Asseguro que as tarefas sejam feitas monitorando de perto e sinalizando os riscos de advertências ou cortes.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par8" data-letra-a="A" data-letra-b="C">
+                    <span class="phrase-text b-side">Ganho a confiança do grupo resolvendo problemas complexos que exigem alta capacidade analítica e técnica.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 09</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Resolvo gargalos operacionais ligando para as pessoas certas e pedindo apoio da minha rede de relacionamentos.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par9" data-letra-a="B" data-letra-b="D">
+                    <span class="phrase-text b-side">Direciono as ações do time com base em informações privilegiadas e tendências de mercado que eu acompanho de perto.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 10</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Quando dou uma instrução, ela é seguida porque a equipe reconhece meu histórico de acertos técnicos no setor.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par10" data-letra-a="C" data-letra-b="E">
+                    <span class="phrase-text b-side">Quando dou uma instrução, ela é seguida porque tenho o respaldo oficial da minha função como gestor do projeto.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 11</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Uso o acesso exclusivo a dados estratégicos da empresa para pautar o ritmo e o foco do trabalho da equipe.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par11" data-letra-a="D" data-letra-b="A">
+                    <span class="phrase-text b-side">Mantenho o foco do time deixando explícito que falhas de comprometimento afetarão negativamente a avaliação deles.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 12</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Confio nos limites do meu cargo para delegar funções e cobrar resultados, sem precisar "pedir favores".</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par12" data-letra-a="E" data-letra-b="B">
+                    <span class="phrase-text b-side">Consigo que outras áreas priorizem minhas demandas porque cultivo ótimos relacionamentos com os líderes de lá.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 13</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">O grupo adota minhas ideias porque crio um clima de camaradagem e sou visto como um exemplo a ser seguido.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par13" data-letra-a="F" data-letra-b="C">
+                    <span class="phrase-text b-side">O grupo adota minhas ideias porque trago soluções baseadas em estudo rigoroso e anos de prática no mercado.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 14</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Obtenho a cooperação dos pares oferecendo vantagens diretas, como visibilidade em projetos ou bonificações.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par14" data-letra-a="G" data-letra-b="B">
+                    <span class="phrase-text b-side">Obtenho a cooperação dos pares lembrando-os das alianças mútuas e das pontes que construímos no passado.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 15</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Corrijo a rota de projetos aplicando feedbacks duros e documentando formalmente a necessidade de melhoria.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par15" data-letra-a="A" data-letra-b="E">
+                    <span class="phrase-text b-side">Alinho a equipe relembrando as responsabilidades contratuais, os regulamentos e as obrigações ligadas ao cargo.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 16</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Influencio decisões organizando reuniões informais e articulando apoios nos bastidores antes das votações oficiais.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par16" data-letra-a="B" data-letra-b="F">
+                    <span class="phrase-text b-side">Influencio o ambiente promovendo uma cultura de propósito onde todos se sentem parte de algo maior.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 17</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Motivo as pessoas a evoluírem servindo como um mentor técnico, ajudando-as a resolver problemas na prática.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par17" data-letra-a="C" data-letra-b="G">
+                    <span class="phrase-text b-side">Motivo as pessoas a evoluírem garantindo que os melhores desempenhos recebam promoções, bônus ou folgas.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 18</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Conduzo as estratégias compartilhando informações seletivas que direcionam a equipe para a conclusão que espero.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par18" data-letra-a="D" data-letra-b="F">
+                    <span class="phrase-text b-side">Conduzo as estratégias de negócios engajando as pessoas na visão de futuro que construímos juntos.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 19</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Exijo o cumprimento das entregas apoiando-me no fato de que sou o responsável final perante a diretoria/clientes.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par19" data-letra-a="E" data-letra-b="G">
+                    <span class="phrase-text b-side">Facilito a entrega das demandas prometendo recursos extras ou prêmios para quem bater a meta primeiro.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 20</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Evito insubordinações criando uma relação de respeito mútuo, escuta ativa e admiração pessoal com os liderados.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par20" data-letra-a="F" data-letra-b="A">
+                    <span class="phrase-text b-side">Contenho focos de insubordinação agindo rapidamente com medidas restritivas para não perder o controle sobre o time.</span>
+                </div>
+            </div>
+
+            <div class="glass-panel question-pair">
+                <h3>Situação 21</h3>
+                <div class="slider-labels">
+                    <span class="label-destaque">⬅ Mais a ver comigo</span><span class="label-destaque">Mais a ver comigo ➡</span>
+                </div>
+                <div class="slider-container single-slider-setup">
+                    <span class="phrase-text a-side">Garanto que as prioridades sejam atendidas oferecendo recompensas claras para quem finaliza as tarefas-chave.</span>
+                    <input type="range" min="0" max="3" value="1" step="1" class="slider-single" id="par21" data-letra-a="G" data-letra-b="D">
+                    <span class="phrase-text b-side">Oriento as prioridades da equipe ditando qual informação é mais urgente com base no que recebo da alta gestão.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button id="btnCalcular" class="btn-glow">Gerar Análise das Bases</button>
+        </div>
+    </section>
+
+    <section id="tela-analise-bases">
+        <h2 class="text-gradient" style="text-align: center;">O Seu Gráfico de Poder</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 20px;">A pontuação vai de 0 a 18 para cada base.</p>
+
+        <div class="chart-container" style="position: relative; height: 400px; width: 100%; margin: 30px 0; background: rgba(0, 0, 0, 0.4); border-radius: var(--radius); padding: 20px; border: 1px solid var(--glass-border);">
+            <canvas id="radarChart"></canvas>
+        </div>
+
+        <h3 class="text-gradient" style="margin-top: 40px; margin-bottom: 20px;">Diagnóstico por Base</h3>
+        <div id="analisesIndividuaisContainer"></div>
+
+        <div class="button-container" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <button onclick="window.print()" class="btn-glow" style="background: rgba(255,255,255,0.1); color: var(--text-main);">🖨️ Imprimir Análise</button>
+            <button id="btnVerPerfis" class="btn-glow">Descobrir Meu Arquétipo Completo</button>
+        </div>
+    </section>
+
+    <section id="tela-mapa-mina">
+        <div id="mapaMinaContainer"></div>
+        
+        <div class="button-container" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 40px;">
+            <button id="btnVoltarGrafico" class="btn-glow" style="background: rgba(255,255,255,0.1); color: var(--text-main);">⬅ Voltar ao Gráfico</button>
+            <button onclick="window.print()" class="btn-glow">🖨️ Salvar / Imprimir Relatório Final</button>
+        </div>
+    </section>
+
+    <footer style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--glass-border); color: var(--text-muted); font-size: 0.85rem;">
+        <p style="color: var(--ios-blue); font-size: 1rem; margin-bottom: 5px;"><strong>Desenvolvido por Raphael Furlan</strong></p>
+        <p style="margin-bottom: 15px;">Com base nos aprendizados do EMPRETEC 2026</p>
+        
+        <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; font-size: 0.75rem; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05);">
+            <p>Conteúdo baseado nas Bases do Poder Social de French & Raven.</p>
+            <p>Esta obra está licenciada sob uma Licença Creative Commons Atribuição-NãoComercial 4.0 Internacional (CC BY-NC 4.0).</p>
+        </div>
+        
+        <p>Dúvidas ou sugestões? <a href="mailto:rapfur@gmail.com" style="color: var(--ios-blue); text-decoration: none; font-weight: 600;">Fale comigo</a></p>
+    </footer>
+
+</div>
+
+</body>
+</html>
